@@ -1,0 +1,27 @@
+
+
+    .dark-mode-toggle{
+        margin-right: 30px;
+        background: transparent;
+        
+    }
+
+    img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 18px;
+        border-radius: 50%;
+        border: none;
+    }
+
+    @media (max-width: 768px) {
+        
+    .dark-mode-toggle{
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+        }
+    }
