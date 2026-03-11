@@ -24,14 +24,14 @@ function ImageGenerator() {
     }
 return (
     <div className='tab-content'>
-    <GradientText
+    {/* <GradientText
   colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
   animationSpeed={3}
   showBorder={false}
   className="custom-class"
 >
   Generate Image
-</GradientText>
+</GradientText> */}
 
 <div className='input-button'>
 <input 
@@ -51,6 +51,7 @@ return (
                 ⬇ Download
             </a>
         </div>))}
+        
         {[...Array(4 - imageUrls.length)].map((_, index) => (
             <div key={index + imageUrls.length} className='empty-image-slot'></div>
         ))}

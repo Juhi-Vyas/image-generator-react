@@ -1,19 +1,24 @@
-
-.header{
+.header {
   position: fixed;
-  margin: 5px 5px 5px 5px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  background: transparent;
+  background: rgba(15, 15, 20, 0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  height: 8%;
+  padding: 10px;
 }
 
-.logo{
-  font-size: 28px;
-  color: #fff;
-  font-weight: 300px;
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: rgb(244, 207, 212);
 }
 
 .hamburger {
@@ -30,26 +35,33 @@
   align-items: center;
 }
 
-.navbar a{
+.navbar a {
   position: relative;
   font-size: 18px;
   color: #fff;
   font-weight: 500;
   margin-left: 30px;
+  transition: color 0.3s ease;
 }
 
-.navbar a::before{
-  content: '';
+.navbar a:hover {
+  color: #3b82f6;
+}
+
+.navbar a::before {
+  content: "";
   position: absolute;
   top: 100%;
   left: 0;
   width: 0;
   height: 2px;
-  background: #fff;
+  /* background: #fff; */
   transition: 0.3s;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
 }
 
-.navbar a:hover::before{
+.navbar a:hover::before {
   width: 100%;
 }
 
@@ -71,6 +83,8 @@
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  transition: all 0.3s ease;
 }
 
 .profile-icon {
@@ -82,7 +96,8 @@
   position: absolute;
   top: 40px;
   right: 10px;
-  background: rgba(0, 0, 0, 0.7); /* slight transparent dark */
+  background: rgba(20, 20, 25, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px); /* nice blur effect */
   border-radius: 12px;
   padding: 12px;
@@ -95,10 +110,8 @@
   min-width: 100px;
 }
 
-
 @media (max-width: 768px) {
-  
-  .header{
+  .header {
     position: fixed;
     margin-top: 20px;
     max-width: 100%;
@@ -119,7 +132,6 @@
     z-index: 200;
   }
 
-
   .navbar {
     position: absolute;
     top: 60px;
@@ -134,8 +146,8 @@
 
   .navbar.active {
     display: flex;
-    left: 0;
-    top: 20px;
+    left: 20px;
+    top: 60px;
   }
 
   .navbar a {
@@ -143,16 +155,14 @@
     font-size: 12px;
   }
 
-  
   .logo {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 24px; 
+    font-size: 24px;
   }
 
-
-  .profile-container{
+  .profile-container {
     position: absolute;
     right: 30px;
     top: 50%;
@@ -162,8 +172,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .dropdown-pic {
   width: 60px;
@@ -211,4 +227,3 @@
   transform: scale(1.05);
   transition: all 0.3s ease;
 }
-

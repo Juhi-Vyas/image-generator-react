@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const firebaseConfig = {
-apiKey: "AIzaSyAj7SQiQsFzGDp2ctZmBdQkDm_uU4fh-_E",
+  apiKey: "AIzaSyAj7SQiQsFzGDp2ctZmBdQkDm_uU4fh-_E",
   authDomain: "image-generator-203a0.firebaseapp.com",
   projectId: "image-generator-203a0",
   storageBucket: "image-generator-203a0.firebasestorage.app",

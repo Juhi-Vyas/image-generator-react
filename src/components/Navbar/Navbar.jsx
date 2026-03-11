@@ -73,20 +73,21 @@ function Navbar() {
   return (
     <div>
       <header className="header">
-        <a href="/" className="logo">LOGO</a>
+        <a href="/" className="logo">Get<span style={{color:"#b2cdf9"}}>ify</span></a>
 
         <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           <FontAwesomeIcon icon={faBars} />
         </button>
 
         <nav className={`navbar ${menuOpen ? 'active' : ''}`}>
-          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/" onClick={() => setMenuOpen(false)}>Image Generate</Link>
           <Link to="/" onClick={() => setMenuOpen(false)}>AI Chat</Link>
+          
 
           {!user && (
             <>
               <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+              <Link to="/signup" onClick={() => setMenuOpen(false)}>Signup</Link>
             </>
           )}
         </nav>
