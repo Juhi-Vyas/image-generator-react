@@ -7,7 +7,6 @@ import "./App.css";
 // import "./dark-mode.css";
 import ImageGenerator from "./components/ImageGenerator";
 import ChatComponent from "./components/ChatComponent";
-import Particles from "./reactbits/Particles";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login";
 import Signup from "./components/Register";
@@ -43,22 +42,13 @@ function App() {
             overflow: "hidden",
           }}
         >
-          {/* <Particles
-            particleColors={["#ffffff", "#ffffff"]}
-            particleCount={200}
-            particleSpread={10}
-            speed={0.1}
-            particleBaseSize={100}
-            moveParticlesOnHover={true}
-            alphaParticles={false}
-            disableRotation={false}
-          /> */}
+
         </div>
 
         <Navbar user={user} />
 
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element={
               <div>
@@ -83,7 +73,10 @@ function App() {
                 </div>
               </div>
             }
-          />
+          /> */}
+          <Route path="/" element={<ChatComponent />} />
+          <Route path="/chatWith" element={<ChatComponent />} />
+          <Route path="/image" element={<ImageGenerator />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

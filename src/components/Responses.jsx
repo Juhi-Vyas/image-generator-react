@@ -1,12 +1,22 @@
-import React from 'react'
+import React from "react";
+import ReactMarkdown from "react-markdown";
+import '../styles/Response.css'
 
-function Responses({ans,key}) {
-    console.log(ans)
+export default function Responses({ ans }) {
+
+  if (ans.type === "q") {
+    return (
+      <div className="question">
+        {ans.text}
+      </div>
+    );
+  }
+
   return (
-    <div>
-      {ans}
+    <div className="answer">
+      <div className="markdown">
+        <ReactMarkdown>{ans.text}</ReactMarkdown>
+      </div>
     </div>
-  )
+  );
 }
-
-export default Responses

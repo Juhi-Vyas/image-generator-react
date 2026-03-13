@@ -80,8 +80,8 @@ function Navbar() {
         </button>
 
         <nav className={`navbar ${menuOpen ? 'active' : ''}`}>
-          <Link to="/" onClick={() => setMenuOpen(false)}>Image Generate</Link>
-          <Link to="/" onClick={() => setMenuOpen(false)}>AI Chat</Link>
+          <Link to="/chatWith" onClick={() => setMenuOpen(false)}>AI Chat</Link>
+          <Link to="/image" onClick={() => setMenuOpen(false)}>Image Generate</Link>
           
 
           {!user && (
@@ -92,8 +92,8 @@ function Navbar() {
           )}
         </nav>
 
-        <div className="right-section">
-          <DarkModeToggle />
+        <div className="right-nav">
+          {/* <DarkModeToggle /> */}
           <div className="profile-container" ref={profileRef} onClick={() => setDropdownOpen(!dropdownOpen)}>
             {user && user.photoURL ? (
               <img src={user.photoURL} alt="Profile" className="profile-pic" />

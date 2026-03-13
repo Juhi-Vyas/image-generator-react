@@ -1,0 +1,117 @@
+/* SIDEBAR */
+
+.sidebar{
+  width:260px;
+  height:100vh;
+
+  background:#0f0f0f;
+  border-right:1px solid #222;
+
+  padding:20px;
+
+  overflow-y:auto;
+
+  display:flex;
+  flex-direction:column;
+}
+
+/* TITLE */
+
+.sidebar-title{
+  font-size:14px;
+  font-weight:600;
+
+  color:#aaa;
+
+  margin-bottom:15px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* LIST */
+
+.sidebar ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+/* HISTORY ITEM */
+
+.history-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:10px 12px;
+
+  margin-bottom:6px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  transition:0.2s;
+
+  color:#ddd;
+  font-size:14px;
+}
+
+/* HOVER */
+
+.history-item:hover{
+  background:#1f1f1f;
+}
+
+/* TEXT */
+
+.history-text{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+
+  max-width:170px;
+}
+
+/* DELETE ICON */
+
+.menu-dots{
+  display:flex;
+  align-items:center;
+
+  font-size:18px;
+
+  color:#888;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.menu-dots:hover{
+  color:#ff4d4d;
+}
+
+/* SCROLLBAR */
+
+.sidebar::-webkit-scrollbar{
+  width:6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+  background:#333;
+  border-radius:10px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.sidebar{
+  width:100%;
+  height:auto;
+  border-right:none;
+  border-bottom:1px solid #222;
+}
+
+}

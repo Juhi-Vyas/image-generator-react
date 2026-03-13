@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import GradientText  from '../reactbits/GradientText';
 
 
 function ImageGenerator() {
@@ -24,14 +23,6 @@ function ImageGenerator() {
     }
 return (
     <div className='tab-content'>
-    {/* <GradientText
-  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-  animationSpeed={3}
-  showBorder={false}
-  className="custom-class"
->
-  Generate Image
-</GradientText> */}
 
 <div className='input-button'>
 <input 

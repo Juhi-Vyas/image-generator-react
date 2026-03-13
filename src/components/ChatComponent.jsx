@@ -1,16 +1,27 @@
-import React, { useState } from "react";
-import GradientText from "../reactbits/GradientText";
+import React, { useState, useEffect, useRef } from "react";
 import { URL } from "../Constants";
 import Responses from "./Responses";
+import Sidebar from "./Sidebar";
 
 export default function ChatComponent() {
   const [prompt, setPrompt] = useState("");
   const [chatResponse, setChatResponse] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [recentHistory, setRecentHistory] = useState([]);
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    const history = JSON.parse(localStorage.getItem("history")) || [];
+    setRecentHistory(history);
+  }, []);
 
   const askAI = async () => {
-
     if (!prompt.trim()) return;
+
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    history = [prompt, ...history];
+    localStorage.setItem("history", JSON.stringify(history));
+    setRecentHistory(history);
 
     try {
       setLoading(true);
@@ -21,75 +32,73 @@ export default function ChatComponent() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: prompt }],
-            },
-          ],
+          contents: [{ parts: [{ text: prompt }] }],
         }),
       });
 
       const data = await res.json();
 
-      // safety check
       if (data?.candidates?.length > 0) {
+        const aiResponse = data.candidates[0].content.parts[0].text;
 
-        let dataString =
-          data.candidates[0].content.parts[0].text;
-
-        dataString = dataString
-          .split("* ")
-          .map((item) => item.trim())
-          .filter((item) => item !== "");
-
-        setChatResponse(dataString);
-
-      } else {
-        console.log("Unexpected response:", data);
+        setChatResponse((prev) => [
+          ...prev,
+          { type: "q", text: prompt },
+          { type: "a", text: aiResponse },
+        ]);
       }
-
     } catch (error) {
-      console.log("Error generating response:", error);
+      console.log("Error:", error);
+    } finally {
+      setLoading(false);
     }
 
-    setLoading(false);
+    setPrompt("");
+
+    setTimeout(() => {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }, 300);
   };
+
+  function deleteHistory(index) {
+    let updated = recentHistory.filter((item, i) => i !== index);
+    setRecentHistory(updated);
+    localStorage.setItem("history", JSON.stringify(updated));
+  }
 
   return (
     <div className="chat-content">
-
-      <GradientText
-        colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-        animationSpeed={3}
-        showBorder={false}
-        className="custom-class"
-      >
-        Chat with AI
-      </GradientText>
-
-      <div className="output">
-        <ul>
-          {chatResponse.map((item, index) => (
-            <li key={index}>
-              <Responses ans={item} />
-            </li>
-          ))}
-        </ul>
+      <div className="left-section">
+        <Sidebar recentHistory={recentHistory} deleteHistory={deleteHistory} />
       </div>
 
-      <div className="input-button">
-        <input
-          type="text"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Enter a prompt for AI"
-        />
+      <div className="right-section">
+        <div className="output" ref={scrollRef}>
+          <ul>
+            {chatResponse.map((item, index) => (
+              <li key={index}>
+                <Responses ans={item} />
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <button onClick={askAI} disabled={loading}>
-          {loading ? "Thinking..." : "Ask"}
-        </button>
+        <div className="input-button">
+          <input
+            type="text"
+            value={prompt}
+            placeholder="Enter a prompt for AI"
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") askAI();
+            }}
+          />
+
+          <button onClick={askAI} disabled={loading}>
+            {loading ? "Thinking..." : "Ask"}
+          </button>
+        </div>
       </div>
-
     </div>
   );
 }

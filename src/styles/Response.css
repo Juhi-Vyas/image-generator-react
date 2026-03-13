@@ -1,0 +1,19 @@
+.question {
+  background: #2c2c2c;
+  padding: 10px 14px;
+  border-radius: 50px 0px 50px 50px;
+  margin-bottom: 10px;
+
+  display: block;
+  width: fit-content;
+  margin-left: auto; /* pushes bubble to right */
+
+  text-align: right;
+}
+
+.answer {
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
